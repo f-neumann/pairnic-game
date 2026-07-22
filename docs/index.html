@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pairnic – Calm Block-Matching Puzzle Game for iPhone &amp; iPad</title>
+    <meta name="description" content="Pairnic is a calm, brain-teasing block-matching puzzle game for iPhone and iPad. Slide blocks, trigger matches, and solve the signature twist across 100 hand-built levels. No ads, no accounts.">
+    <meta name="keywords" content="Pairnic, puzzle game iPhone, block matching game, brain teaser, logic puzzle, iPad puzzle, SpriteKit game, offline puzzle game">
+    <meta name="author" content="Frank Neumann">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://f-neumann.github.io/pairnic/">
+    <meta property="og:title" content="Pairnic – Calm Block-Matching Puzzle Game">
+    <meta property="og:description" content="Slide, drop, and merge blocks to clear every board. 100 hand-built levels, no ads, no accounts.">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Pairnic – Calm Block-Matching Puzzle Game">
+    <meta name="twitter:description" content="Slide, drop, and merge blocks to clear every board. 100 hand-built levels, no ads, no accounts.">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://f-neumann.github.io/pairnic/">
+
+    <!-- Structured data: App -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "MobileApplication",
+        "name": "Pairnic",
+        "description": "A calm, brain-teasing block-matching puzzle game for iPhone and iPad with 100 hand-built levels across 10 stages.",
+        "applicationCategory": "GameApplication",
+        "applicationSubCategory": "PuzzleGame",
+        "operatingSystem": "iOS 18.0+",
+        "publisher": {
+            "@type": "Person",
+            "name": "Frank Neumann",
+            "email": "support@pairnic-game.fneumann.com"
+        }
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg:      #0a0c16;
+            --bg2:     #0e1120;
+            --bg3:     #151932;
+            --cyan:    #2fd7e6;
+            --cyan-glow: rgba(47,215,230,0.30);
+            --text:    #eef0f7;
+            --dim:     #9aa0c0;
+            --dimmer:  #6b7094;
+            --border:  #232847;
+
+            /* the 8 real in-game block colors (SymbolStyle) */
+            --amber:   #f2a01a;
+            --blue:    #338cf2;
+            --crimson: #db3354;
+            --green:   #5cb85c;
+            --violet:  #9966e6;
+            --teal:    #33bfbf;
+            --pink:    #f266a6;
+            --slate:   #8c8c96;
+
+            --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --mono: "SF Mono", "Menlo", "Monaco", monospace;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--font);
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        /* ── Navigation ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(10,12,22,0.92);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+        .nav-inner {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            height: 56px;
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -0.2px;
+        }
+        .nav-brand-mark {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2px;
+            width: 16px;
+            height: 16px;
+        }
+        .nav-brand-mark span { background: var(--cyan); border-radius: 2px; }
+        .nav-links {
+            display: flex;
+            gap: 26px;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            transition: color 0.15s;
+        }
+        .nav-links a:hover { color: var(--text); }
+        .nav-links a.active { color: var(--cyan); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--dim);
+            font-size: 22px;
+            padding: 4px 8px;
+            line-height: 1;
+        }
+
+        /* ── Sections ── */
+        section { padding: 88px 24px; }
+        .inner { max-width: 780px; margin: 0 auto; }
+        section:nth-of-type(even) { background: var(--bg2); }
+
+        .eyebrow {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.4px;
+            margin-bottom: 36px;
+        }
+
+        h3 {
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 700;
+            margin: 30px 0 10px;
+        }
+
+        p { color: var(--dim); margin-bottom: 14px; }
+        p:last-child { margin-bottom: 0; }
+        .inner > p { font-size: 16px; line-height: 1.8; }
+
+        a { color: var(--cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        strong { color: var(--text); font-weight: 700; }
+        code {
+            font-family: var(--mono);
+            font-size: 0.9em;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 6px;
+        }
+
+        /* ── Hero ── */
+        #home {
+            min-height: 92vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 64px 24px;
+            position: relative;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse 900px 500px at 50% -10%, rgba(47,215,230,0.10), transparent 60%),
+                var(--bg);
+        }
+        .hero { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; width: 100%; }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--dim);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 6px 16px;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        /* Row of 8 mini blocks rendered like the real in-game symbols:
+           gradient body + top gloss highlight + bottom shadow, same visual
+           language as SymbolStyle.renderBodyImage in the app itself. */
+        .block-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .block-row .block { animation: blockPop 2.6s ease-in-out infinite; }
+        .block-row .block:nth-child(1) { background: var(--amber);   animation-delay: 0.00s; }
+        .block-row .block:nth-child(2) { background: var(--blue);    animation-delay: 0.08s; }
+        .block-row .block:nth-child(3) { background: var(--crimson); animation-delay: 0.16s; }
+        .block-row .block:nth-child(4) { background: var(--green);   animation-delay: 0.24s; }
+        .block-row .block:nth-child(5) { background: var(--violet);  animation-delay: 0.32s; }
+        .block-row .block:nth-child(6) { background: var(--teal);    animation-delay: 0.40s; }
+        .block-row .block:nth-child(7) { background: var(--pink);    animation-delay: 0.48s; }
+        .block-row .block:nth-child(8) { background: var(--slate);   animation-delay: 0.56s; }
+        .block {
+            width: 34px;
+            height: 34px;
+            border-radius: 9px;
+            box-shadow:
+                inset 0 3px 6px rgba(255,255,255,0.35),
+                inset 0 -6px 10px rgba(0,0,0,0.28),
+                0 6px 14px rgba(0,0,0,0.35);
+        }
+        @keyframes blockPop {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .block-row .block { animation: none; }
+        }
+
+        .hero-title {
+            font-size: clamp(48px, 10vw, 84px);
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1;
+            margin-bottom: 14px;
+        }
+
+        .hero-sub {
+            font-size: clamp(15px, 2.4vw, 18px);
+            color: var(--dim);
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .hero-desc {
+            font-size: 16px;
+            color: var(--dim);
+            max-width: 460px;
+            margin: 0 auto 40px;
+            line-height: 1.85;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--cyan);
+            color: #04141a;
+            padding: 15px 34px;
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            border-radius: 12px;
+            border: 2px solid var(--cyan);
+            transition: transform 0.15s, box-shadow 0.2s;
+        }
+        .btn:hover {
+            text-decoration: none;
+            box-shadow: 0 0 28px var(--cyan-glow);
+            transform: translateY(-1px);
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 44px;
+            margin-top: 52px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+            flex-wrap: wrap;
+        }
+        .stat { text-align: center; }
+        .stat-n { font-size: 28px; color: var(--text); font-weight: 800; line-height: 1; }
+        .stat-l { font-size: 11px; color: var(--dimmer); letter-spacing: 1px; text-transform: uppercase; margin-top: 6px; }
+
+        /* ── Feature cards ── */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 14px;
+            margin-top: 32px;
+        }
+        .card {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        .card:hover { border-color: #363c66; transform: translateY(-2px); }
+        .card-dot { width: 10px; height: 10px; border-radius: 3px; margin-bottom: 14px; }
+        .card-title { color: var(--text); font-weight: 700; font-size: 14.5px; margin-bottom: 8px; }
+        .card-body { color: var(--dim); font-size: 13.5px; line-height: 1.65; }
+
+        /* ── Controls ── */
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .ctrl {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 16px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+        .ctrl-key {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background: rgba(47,215,230,0.12);
+            border: 1px solid rgba(47,215,230,0.28);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+        }
+        .ctrl-title { color: var(--text); font-size: 13.5px; font-weight: 700; margin-bottom: 3px; }
+        .ctrl-body { color: var(--dim); font-size: 12.5px; line-height: 1.6; }
+
+        /* ── Stars ── */
+        .stars { display: grid; gap: 10px; margin-top: 18px; }
+        .star-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 13.5px;
+        }
+        .star-row .stars-icon { color: var(--amber); font-size: 13px; letter-spacing: 1px; flex-shrink: 0; width: 54px; }
+        .star-row span:last-child { color: var(--dim); }
+
+        /* ── Tips ── */
+        .tips { list-style: none; counter-reset: tips; margin-top: 8px; }
+        .tips li {
+            counter-increment: tips;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            padding: 15px 18px;
+            margin-bottom: 8px;
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            font-size: 14px;
+            color: var(--dim);
+            line-height: 1.65;
+        }
+        .tips li::before {
+            content: counter(tips, decimal-leading-zero);
+            font-family: var(--mono);
+            color: var(--cyan);
+            font-weight: bold;
+            font-size: 12px;
+            flex-shrink: 0;
+            width: 20px;
+            padding-top: 2px;
+        }
+
+        /* ── FAQ ── */
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+        .faq-q {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            cursor: pointer;
+            background: var(--bg3);
+            font-size: 14.5px;
+            font-weight: 600;
+            color: var(--text);
+            user-select: none;
+        }
+        .faq-arrow {
+            color: var(--cyan);
+            font-size: 12px;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .faq-item.open .faq-arrow { transform: rotate(90deg); }
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.28s ease, padding 0.28s ease;
+            font-size: 13.5px;
+            color: var(--dim);
+            line-height: 1.75;
+            padding: 0 20px;
+        }
+        .faq-item.open .faq-a { max-height: 280px; padding: 16px 20px; }
+
+        /* ── Contact ── */
+        .contact-box {
+            background: var(--bg3);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+            display: inline-block;
+            max-width: 460px;
+        }
+        .contact-label {
+            font-family: var(--mono);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--dimmer);
+            margin-bottom: 10px;
+        }
+        .contact-email {
+            display: block;
+            color: var(--cyan);
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            word-break: break-all;
+        }
+        .contact-note { font-size: 12.5px; color: var(--dim); line-height: 1.65; }
+
+        .no-cookie {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding: 9px 16px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 12px;
+            color: var(--dim);
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: #060710;
+            border-top: 1px solid var(--border);
+            padding: 36px 24px;
+            text-align: center;
+            font-size: 12.5px;
+            color: var(--dimmer);
+        }
+        footer a { color: var(--dimmer); }
+        footer a:hover { color: var(--dim); }
+        .footer-links { margin-bottom: 12px; }
+        .footer-links a { margin: 0 10px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 640px) {
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 56px; left: 0; right: 0;
+                background: rgba(10,12,22,0.98);
+                border-bottom: 1px solid var(--border);
+                padding: 18px 24px 26px;
+                gap: 18px;
+                z-index: 99;
+            }
+            .nav-toggle { display: block; }
+            section { padding: 60px 18px; }
+            h2 { font-size: 22px; }
+            .hero-stats { gap: 26px; }
+            .stat-n { font-size: 22px; }
+            .contact-box { max-width: 100%; width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ── Navigation ── -->
+<nav id="nav">
+    <div class="nav-inner">
+        <a href="#home" class="nav-brand">
+            <span class="nav-brand-mark"><span></span><span></span><span></span><span></span></span>
+            Pairnic
+        </a>
+        <button class="nav-toggle" onclick="toggleNav()" aria-label="Menu">☰</button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#play">How to Play</a></li>
+            <li><a href="#tips">Tips</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#privacy">Privacy</a></li>
+            <li><a href="#support">Support</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- ── Hero ── -->
+<section id="home">
+    <div class="hero">
+        <div class="hero-badge">Indie puzzle game · iPhone &amp; iPad</div>
+        <div class="block-row">
+            <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
+            <div class="block"></div><div class="block"></div><div class="block"></div><div class="block"></div>
+        </div>
+        <h1 class="hero-title">Pairnic</h1>
+        <p class="hero-sub">Match. Merge. Clear the board.</p>
+        <p class="hero-desc">
+            Slide colorful blocks into place. Gravity does the rest. Match two or
+            more of the same symbol and they vanish — but some levels hide a
+            symbol in threes, so you'll need all of them to meet at once.
+        </p>
+        <!-- TODO: replace with the real App Store URL once the app listing is live -->
+        <a href="#" class="btn">Get it on the App Store</a>
+
+        <div class="hero-stats">
+            <div class="stat"><div class="stat-n">100</div><div class="stat-l">Levels</div></div>
+            <div class="stat"><div class="stat-n">10</div><div class="stat-l">Stages</div></div>
+            <div class="stat"><div class="stat-n">8</div><div class="stat-l">Symbols</div></div>
+            <div class="stat"><div class="stat-n">0</div><div class="stat-l">Ads</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── About ── -->
+<section id="about">
+    <div class="inner">
+        <span class="eyebrow">About the game</span>
+        <h2>A quiet puzzle with a clever twist</h2>
+        <p>
+            <strong>Pairnic</strong> is a brain-teasing puzzle game about sliding blocks into
+            place. Every level is a small hand-built playfield of walls and colored
+            blocks. You slide blocks left and right — gravity does the rest, pulling
+            them down until they land on a wall, another block, or the floor. Get two
+            or more blocks of the same symbol touching, and they vanish. Clear every
+            block on the board to win the level, before your timer runs out.
+        </p>
+        <p style="margin-top: 14px;">
+            The signature twist: some levels hide an <strong>odd number</strong> of a given
+            symbol — three lightning bolts, say, with no way to pair them off two at
+            a time. The only way to clear them is to engineer a moment where all
+            three touch at once. It's a puzzle within the puzzle, and it's the heart
+            of what makes Pairnic click.
+        </p>
+
+        <div class="grid">
+            <div class="card">
+                <div class="card-dot" style="background:var(--cyan)"></div>
+                <div class="card-title">Slide, Drop, Match</div>
+                <div class="card-body">Simple to learn: slide blocks, let gravity pull them into place, and clear matching symbols. No combos to memorize, no reflexes required.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--crimson)"></div>
+                <div class="card-title">The Odd-Count Twist</div>
+                <div class="card-body">Some symbols only come in threes. Pairing two off first strands the last one forever — you have to make all three meet at once.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--violet)"></div>
+                <div class="card-title">Moving Platforms</div>
+                <div class="card-body">Later stages add platforms that carry blocks up, down, and sideways on their own schedule — timing becomes part of the solution.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--blue)"></div>
+                <div class="card-title">Drag or Cursor Control</div>
+                <div class="card-body">Drag blocks directly, or switch to tap-to-select cursor mode in Settings if you'd rather not drag on glass.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--teal)"></div>
+                <div class="card-title">Four Block Themes</div>
+                <div class="card-body">Re-skin every block as Classic icons, Fruits, Flowers, or Faces — purely cosmetic, switch anytime in Settings, even mid-level.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--green)"></div>
+                <div class="card-title">No Ads, No Accounts</div>
+                <div class="card-body">No in-app purchases, no ad breaks, no sign-in. Your progress stays on your device and syncs privately across your own devices via iCloud.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── How to Play ── -->
+<section id="play">
+    <div class="inner">
+        <span class="eyebrow">How to play</span>
+        <h2>Learn it in a minute</h2>
+
+        <h3>Objective</h3>
+        <p>Clear every block on the board before the timer runs out. Slide blocks left or right; gravity pulls them down onto whatever's beneath — a wall, another block, or the floor.</p>
+
+        <h3>Controls</h3>
+        <div class="controls">
+            <div class="ctrl">
+                <div class="ctrl-key">👆</div>
+                <div>
+                    <div class="ctrl-title">Drag mode</div>
+                    <div class="ctrl-body">Drag a block left or right to slide it. Each cell you cross is a committed step — release your finger and the block stays put.</div>
+                </div>
+            </div>
+            <div class="ctrl">
+                <div class="ctrl-key">◎</div>
+                <div>
+                    <div class="ctrl-title">Cursor mode</div>
+                    <div class="ctrl-body">Tap a block to select it, then swipe to move it. An accessibility-friendly alternative to dragging, switchable anytime in Settings.</div>
+                </div>
+            </div>
+            <div class="ctrl">
+                <div class="ctrl-key">↺</div>
+                <div>
+                    <div class="ctrl-title">Undo</div>
+                    <div class="ctrl-body">Up to 3 undos per level. One undo rewinds your entire last move, including any chain reactions — everything except the clock.</div>
+                </div>
+            </div>
+            <div class="ctrl">
+                <div class="ctrl-key">+30</div>
+                <div>
+                    <div class="ctrl-title">Time extension</div>
+                    <div class="ctrl-body">A one-time +30 second top-up, available only once you're down to 30 seconds or less — a rescue, not a shortcut.</div>
+                </div>
+            </div>
+        </div>
+
+        <h3>Star rating</h3>
+        <div class="stars">
+            <div class="star-row"><span class="stars-icon">★☆☆</span><span>Clear the level.</span></div>
+            <div class="star-row"><span class="stars-icon">★★☆</span><span>Clear it without using undo.</span></div>
+            <div class="star-row"><span class="stars-icon">★★★</span><span>Clear it above the level's target score — bigger matches, simultaneous groups, and chain reactions all score more.</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Tips ── -->
+<section id="tips">
+    <div class="inner">
+        <span class="eyebrow">Strategy</span>
+        <h2>Tips &amp; tricks</h2>
+
+        <ol class="tips">
+            <li><strong>Watch for odd counts.</strong> If a symbol shows up three times on a board, pairing two of them off first strands the last one — plan a moment where all three can touch at once instead.</li>
+            <li><strong>Undo is for experiments, not just mistakes.</strong> Three undos per level fully restores the board (except the clock), so use one to try a risky idea and see what happens.</li>
+            <li><strong>The +30s button saves itself for when you need it.</strong> It's locked until the timer hits 30 seconds, so there's no reason to hold back — it can't be banked for later.</li>
+            <li><strong>Platforms move on their own schedule.</strong> Matching a block riding a platform is often about timing your slide to when it arrives, not just where it sits right now.</li>
+            <li><strong>Think a few moves ahead.</strong> You only ever slide left or right — gravity handles the falling. Plan for where a block will land, not just where you're pushing it from.</li>
+            <li><strong>Not your style? Switch it up.</strong> Cursor control and four block themes are both free to try anytime in Settings — even mid-level.</li>
+        </ol>
+    </div>
+</section>
+
+<!-- ── FAQ ── -->
+<section id="faq">
+    <div class="inner">
+        <span class="eyebrow">Questions</span>
+        <h2>FAQ</h2>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Is Pairnic free to play?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Check the App Store listing for the current price. There are no in-app purchases, no ads, and no subscriptions — you get the complete game with all 100 levels.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Does Pairnic collect my data?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Only your own progress — which levels you've cleared, your stars, and your best scores. It's stored on your device and synced privately across your own devices via Apple's iCloud, using your existing iCloud account. Nothing is ever sent to the developer. There are no accounts, no analytics SDKs, and no ad frameworks in the app.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>What's the "three at once" thing about?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Normally you clear a symbol by getting two or more of it touching. Some levels instead hide an odd count — three of a kind — so pairing two off first leaves the last one unmatchable. You have to engineer a single moment where all three touch simultaneously.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Can I switch between drag and cursor controls?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Yes — it's a toggle in Settings, and it applies immediately, even in the middle of a level.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>What happens if a level gets stuck?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">If the board reaches a state where it can no longer be solved (a symbol left with no possible partner), Pairnic tells you and lets you retry immediately — no penalty beyond starting the level over. Every shipped level has also been verified solvable ahead of time by an exhaustive solver, so if it's in the game, it can be cleared.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>Does it work on iPad?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Yes, full iPhone and iPad support, including both iPad orientations.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>What iOS version is required?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">Pairnic requires iOS 18.0 or later.</div>
+        </div>
+    </div>
+</section>
+
+<!-- ── Privacy ── -->
+<section id="privacy">
+    <div class="inner">
+        <span class="eyebrow">Legal</span>
+        <h2>Privacy Policy</h2>
+        <p><strong>Effective date: 2026 · Published by Frank Neumann</strong></p>
+
+        <h3>What we collect</h3>
+        <p>Nothing that identifies you. Pairnic has no user accounts, no login, and no registration of any kind. The app includes no analytics SDKs, no advertising frameworks, no crash reporters, and no third-party tracking code — only first-party Apple frameworks (SpriteKit, SwiftUI, AVFoundation).</p>
+
+        <h3>Your game progress</h3>
+        <p>Which levels you've cleared, your stars, and your best scores are stored locally on your device as a small file. That same data is mirrored through Apple's iCloud key-value store so it follows you across your own devices signed into the same iCloud account. This data is never transmitted to the developer or any third party — Pairnic has no backend server at all.</p>
+
+        <h3>This website</h3>
+        <p>This page uses no cookies, no tracking pixels, and no third-party scripts. No personal data is collected by visiting it.</p>
+
+        <h3>Contact</h3>
+        <p>Questions about privacy? Email <a href="mailto:support@pairnic-game.fneumann.com">support@pairnic-game.fneumann.com</a> — we'll respond promptly.</p>
+    </div>
+</section>
+
+<!-- ── Support ── -->
+<section id="support">
+    <div class="inner">
+        <span class="eyebrow">Get help</span>
+        <h2>Support</h2>
+        <p>
+            Found a bug? Stuck on a level that seems impossible? Got a question not
+            answered above? Pairnic is a small indie project — every message gets
+            read, and your reports genuinely shape what gets fixed next.
+        </p>
+
+        <div class="contact-box" style="margin-top: 24px;">
+            <div class="contact-label">Contact</div>
+            <a href="mailto:support@pairnic-game.fneumann.com" class="contact-email">support@pairnic-game.fneumann.com</a>
+            <p class="contact-note">
+                When reporting a bug, please include your <strong>iOS version</strong>,
+                <strong>device model</strong>, and the <strong>level number</strong> you were
+                on (shown top-left during play, e.g. "3-9"). A description of what
+                happened — and what you expected — helps a lot. Screenshots are
+                always welcome.
+            </p>
+        </div>
+
+        <div class="no-cookie">
+            <span>🔒</span>
+            <span>This website uses no cookies and collects no personal data.</span>
+        </div>
+    </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+    <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#play">How to Play</a>
+        <a href="#tips">Tips</a>
+        <a href="#faq">FAQ</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#support">Contact</a>
+    </div>
+    <p>&copy; 2026 Frank Neumann · All rights reserved</p>
+    <p style="margin-top: 8px; font-size: 11px; color: #3a3f5c;">Pairnic is an original puzzle game inspired by classic block-matching arcade puzzlers; it is not affiliated with or endorsed by any specific existing title or publisher.</p>
+</footer>
+
+<script>
+    // Mobile nav
+    function toggleNav() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+    document.querySelectorAll('#navLinks a').forEach(a =>
+        a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'))
+    );
+
+    // FAQ accordion
+    function toggleFaq(el) {
+        const item = el.parentElement;
+        const wasOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+    }
+
+    // Active nav link tracking
+    const allSections = document.querySelectorAll('section[id]');
+    const allNavLinks = document.querySelectorAll('#navLinks a');
+    allSections.forEach(s => new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                const id = e.target.id;
+                allNavLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + id));
+            }
+        });
+    }, { rootMargin: '-35% 0px -60% 0px' }).observe(s));
+</script>
+
+</body>
+</html>
