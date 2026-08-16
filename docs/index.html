@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pairnic – Calm Block-Matching Puzzle Game for iPhone &amp; iPad</title>
-    <meta name="description" content="Pairnic is a calm, brain-teasing block-matching puzzle game for iPhone and iPad. Slide blocks, trigger matches, and solve the signature twist across 100 hand-built levels. No ads, no accounts.">
-    <meta name="keywords" content="Pairnic, puzzle game iPhone, block matching game, brain teaser, logic puzzle, iPad puzzle, SpriteKit game, offline puzzle game">
+    <meta name="description" content="Pairnic is a calm, brain-teasing block-matching puzzle game for iPhone and iPad. 100 levels, a daily Level of the Day with a worldwide leaderboard, and 5 languages. No ads, no accounts.">
+    <meta name="keywords" content="Pairnic, puzzle game iPhone, block matching game, brain teaser, logic puzzle, iPad puzzle, SpriteKit game, offline puzzle game, daily puzzle game, leaderboard">
     <meta name="author" content="Frank Neumann">
     <meta name="robots" content="index, follow">
 
@@ -13,12 +13,12 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://f-neumann.github.io/pairnic-game/">
     <meta property="og:title" content="Pairnic – Calm Block-Matching Puzzle Game">
-    <meta property="og:description" content="Slide, drop, and merge blocks to clear every board. 100 hand-built levels, no ads, no accounts.">
+    <meta property="og:description" content="Slide, drop, and merge blocks to clear every board. 100 levels, a daily Level of the Day with a worldwide leaderboard, no ads, no accounts.">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Pairnic – Calm Block-Matching Puzzle Game">
-    <meta name="twitter:description" content="Slide, drop, and merge blocks to clear every board. 100 hand-built levels, no ads, no accounts.">
+    <meta name="twitter:description" content="Slide, drop, and merge blocks to clear every board. 100 levels, a daily Level of the Day with a worldwide leaderboard, no ads, no accounts.">
 
     <!-- Canonical -->
     <link rel="canonical" href="https://f-neumann.github.io/pairnic-game/">
@@ -29,10 +29,11 @@
         "@context": "https://schema.org",
         "@type": "MobileApplication",
         "name": "Pairnic",
-        "description": "A calm, brain-teasing block-matching puzzle game for iPhone and iPad with 100 hand-built levels across 10 stages.",
+        "description": "A calm, brain-teasing block-matching puzzle game for iPhone and iPad with 100 levels across 10 stages, a daily Level of the Day with a worldwide leaderboard, and support for English, German, French, Spanish, and Chinese.",
         "applicationCategory": "GameApplication",
         "applicationSubCategory": "PuzzleGame",
         "operatingSystem": "iOS 18.0+",
+        "softwareVersion": "1.1",
         "publisher": {
             "@type": "Person",
             "name": "Frank Neumann",
@@ -554,6 +555,7 @@
         <div class="hero-stats">
             <div class="stat"><div class="stat-n">100</div><div class="stat-l">Levels</div></div>
             <div class="stat"><div class="stat-n">10</div><div class="stat-l">Stages</div></div>
+            <div class="stat"><div class="stat-n">5</div><div class="stat-l">Languages</div></div>
             <div class="stat"><div class="stat-n">8</div><div class="stat-l">Symbols</div></div>
             <div class="stat"><div class="stat-n">0</div><div class="stat-l">Ads</div></div>
         </div>
@@ -567,7 +569,7 @@
         <h2>A quiet puzzle with a clever twist</h2>
         <p>
             <strong>Pairnic</strong> is a brain-teasing puzzle game about sliding blocks into
-            place. Every level is a small hand-built playfield of walls and colored
+            place. Every level is a small playfield of walls and colored
             blocks. You slide blocks left and right — gravity does the rest, pulling
             them down until they land on a wall, another block, or the floor. Get two
             or more blocks of the same symbol touching, and they vanish. Clear every
@@ -612,6 +614,16 @@
                 <div class="card-title">No Ads, No Accounts</div>
                 <div class="card-body">No in-app purchases, no ad breaks, no sign-in. Your progress stays on your device and syncs privately across your own devices via iCloud.</div>
             </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--amber)"></div>
+                <div class="card-title">Level of the Day</div>
+                <div class="card-body">A new puzzle everyone plays together, picked fresh each day. Compare your best score on a worldwide leaderboard powered by Game Center.</div>
+            </div>
+            <div class="card">
+                <div class="card-dot" style="background:var(--pink)"></div>
+                <div class="card-title">Five Languages</div>
+                <div class="card-body">Fully playable in English, German, French, Spanish, and Chinese.</div>
+            </div>
         </div>
     </div>
 </section>
@@ -631,7 +643,7 @@
                 <div class="ctrl-key">👆</div>
                 <div>
                     <div class="ctrl-title">Drag mode</div>
-                    <div class="ctrl-body">Drag a block left or right to slide it. Each cell you cross is a committed step — release your finger and the block stays put.</div>
+                    <div class="ctrl-body">Drag a block left or right to slide it. Each cell you cross is a committed step — release your finger and the block stays put. Prefer one cell at a time? A Drag Mode setting can cap it to a single cell per drag.</div>
                 </div>
             </div>
             <div class="ctrl">
@@ -702,7 +714,7 @@
                 <span>Does Pairnic collect my data?</span>
                 <span class="faq-arrow">▶</span>
             </div>
-            <div class="faq-a">Only your own progress — which levels you've cleared, your stars, and your best scores. It's stored on your device and synced privately across your own devices via Apple's iCloud, using your existing iCloud account. Nothing is ever sent to the developer. There are no accounts, no analytics SDKs, and no ad frameworks in the app.</div>
+            <div class="faq-a">Only your own progress — which levels you've cleared, your stars, and your best scores. It's stored on your device and synced privately across your own devices via Apple's iCloud, using your existing iCloud account. Nothing is ever sent to the developer. There are no accounts, no analytics SDKs, and no ad frameworks in the app. If you play Level of the Day, your score for that day is submitted to Apple's own Game Center service for the worldwide leaderboard — see the Privacy Policy below for details.</div>
         </div>
 
         <div class="faq-item">
@@ -744,6 +756,22 @@
             </div>
             <div class="faq-a">Pairnic requires iOS 18.0 or later.</div>
         </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>What's Level of the Day?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">A single puzzle, picked fresh every day, that every Pairnic player gets at the same time — reachable from a dedicated button on the title screen. It's separate from your regular level progress, and your score for it can be compared against other players on a worldwide leaderboard powered by Apple's Game Center.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+                <span>What languages does Pairnic support?</span>
+                <span class="faq-arrow">▶</span>
+            </div>
+            <div class="faq-a">English, German, French, Spanish, and Chinese. Pairnic follows your device's language setting automatically.</div>
+        </div>
     </div>
 </section>
 
@@ -752,13 +780,16 @@
     <div class="inner">
         <span class="eyebrow">Legal</span>
         <h2>Privacy Policy</h2>
-        <p><strong>Effective date: 2026 · Published by Frank Neumann</strong></p>
+        <p><strong>Effective date: August 2026 · Published by Frank Neumann</strong></p>
 
         <h3>What we collect</h3>
-        <p>Nothing that identifies you. Pairnic has no user accounts, no login, and no registration of any kind. The app includes no analytics SDKs, no advertising frameworks, no crash reporters, and no third-party tracking code — only first-party Apple frameworks (SpriteKit, SwiftUI, AVFoundation).</p>
+        <p>Nothing that identifies you, directly from us. Pairnic has no user accounts, no login, and no registration of any kind. The app includes no analytics SDKs, no advertising frameworks, no crash reporters, and no third-party tracking code — only first-party Apple frameworks (SpriteKit, SwiftUI, AVFoundation, GameKit). Pairnic itself has no backend server of its own; the only network activity is with Apple's own iCloud and Game Center services, described below.</p>
 
         <h3>Your game progress</h3>
-        <p>Which levels you've cleared, your stars, and your best scores are stored locally on your device as a small file. That same data is mirrored through Apple's iCloud key-value store so it follows you across your own devices signed into the same iCloud account. This data is never transmitted to the developer or any third party — Pairnic has no backend server at all.</p>
+        <p>Which levels you've cleared, your stars, and your best scores are stored locally on your device as a small file. That same data is mirrored through Apple's iCloud key-value store so it follows you across your own devices signed into the same iCloud account. This data is never transmitted to the developer or any third party.</p>
+
+        <h3>Level of the Day &amp; worldwide leaderboard</h3>
+        <p>If you play Level of the Day and are signed in to Game Center, Pairnic submits your score for that day's puzzle to Apple's Game Center service so it can appear on the worldwide leaderboard, and Apple's standard Game Center interface is used to display standings. This uses your Game Center identity (not your real name or Apple ID) and is governed by Apple's own Game Center privacy terms, not ours — the developer never receives or stores this data. If you don't use Level of the Day, or aren't signed in to Game Center, none of this happens.</p>
 
         <h3>This website</h3>
         <p>This page uses no cookies, no tracking pixels, and no third-party scripts. No personal data is collected by visiting it.</p>
