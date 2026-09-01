@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "id": "a",
+  "levels": [
+    {
+      "id": "1-1",
+      "url": "levels/level-1-1.json",
+      "checksum": "8c53dc359143bed6"
+    },
+    {
+      "id": "1-2",
+      "url": "levels/level-1-2.json",
+      "checksum": "1004dce14b19a2a9"
+    },
+    {
+      "id": "1-3",
+      "url": "levels/level-1-3.json",
+      "checksum": "71d55334a89d0e98"
+    },
+    {
+      "id": "1-4",
+      "url": "levels/level-1-4.json",
+      "checksum": "b4700612947c7f52"
+    },
+    {
+      "id": "1-5",
+      "url": "levels/level-1-5.json",
+      "checksum": "6bf13254458a5bf7"
+    },
+    {
+      "id": "1-6",
+      "url": "levels/level-1-6.json",
+      "checksum": "75908da37b6bfebe"
+    },
+    {
+      "id": "1-7",
+      "url": "levels/level-1-7.json",
+      "checksum": "2243339f83a18869"
+    },
+    {
+      "id": "1-8",
+      "url": "levels/level-1-8.json",
+      "checksum": "3c74dae9f8bb795a"
+    },
+    {
+      "id": "1-9",
+      "url": "levels/level-1-9.json",
+      "checksum": "308d4ad58116786f"
+    },
+    {
+      "id": "1-10",
+      "url": "levels/level-1-10.json",
+      "checksum": "641a5c61e4e233c2"
+    }
+  ]
+}

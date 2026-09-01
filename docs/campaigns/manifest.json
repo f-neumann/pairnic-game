@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "campaigns": [
+    {
+      "id": "a",
+      "title": "Campaign A",
+      "subtitle": "10 new levels",
+      "unlockRequires": "main",
+      "manifestURL": "a/manifest.json"
+    }
+  ]
+}
