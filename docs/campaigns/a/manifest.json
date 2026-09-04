@@ -351,6 +351,56 @@
       "id": "7-10",
       "url": "levels/level-7-10.json",
       "checksum": "62413d88bbae221d"
+    },
+    {
+      "id": "8-1",
+      "url": "levels/level-8-1.json",
+      "checksum": "b7a979aec8203b3f"
+    },
+    {
+      "id": "8-2",
+      "url": "levels/level-8-2.json",
+      "checksum": "87b99247b8053b91"
+    },
+    {
+      "id": "8-3",
+      "url": "levels/level-8-3.json",
+      "checksum": "36b2e79c6fdd1561"
+    },
+    {
+      "id": "8-4",
+      "url": "levels/level-8-4.json",
+      "checksum": "58c17d4b0524a033"
+    },
+    {
+      "id": "8-5",
+      "url": "levels/level-8-5.json",
+      "checksum": "b1616a24afcbb6cc"
+    },
+    {
+      "id": "8-6",
+      "url": "levels/level-8-6.json",
+      "checksum": "b6c8d3579348031b"
+    },
+    {
+      "id": "8-7",
+      "url": "levels/level-8-7.json",
+      "checksum": "64ef3ba0351cd2dc"
+    },
+    {
+      "id": "8-8",
+      "url": "levels/level-8-8.json",
+      "checksum": "9d725d42699d312a"
+    },
+    {
+      "id": "8-9",
+      "url": "levels/level-8-9.json",
+      "checksum": "2f076484f6f06179"
+    },
+    {
+      "id": "8-10",
+      "url": "levels/level-8-10.json",
+      "checksum": "5d6ef2a6ff04761b"
     }
   ]
 }
