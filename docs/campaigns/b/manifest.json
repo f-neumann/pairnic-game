@@ -56,6 +56,51 @@
       "id": "2-1",
       "url": "levels/level-2-1.json",
       "checksum": "dc542e4e25481bf1"
+    },
+    {
+      "id": "2-2",
+      "url": "levels/level-2-2.json",
+      "checksum": "37e9083f6148e9ef"
+    },
+    {
+      "id": "2-3",
+      "url": "levels/level-2-3.json",
+      "checksum": "de0dbce2b6e50fc9"
+    },
+    {
+      "id": "2-4",
+      "url": "levels/level-2-4.json",
+      "checksum": "7791368656ab5182"
+    },
+    {
+      "id": "2-5",
+      "url": "levels/level-2-5.json",
+      "checksum": "d9c687d3a5afaf22"
+    },
+    {
+      "id": "2-6",
+      "url": "levels/level-2-6.json",
+      "checksum": "06bb5747e33a98f9"
+    },
+    {
+      "id": "2-7",
+      "url": "levels/level-2-7.json",
+      "checksum": "abfd262d9ad57dcd"
+    },
+    {
+      "id": "2-8",
+      "url": "levels/level-2-8.json",
+      "checksum": "18a7f41182a96677"
+    },
+    {
+      "id": "2-9",
+      "url": "levels/level-2-9.json",
+      "checksum": "f82ba2334426ad9d"
+    },
+    {
+      "id": "2-10",
+      "url": "levels/level-2-10.json",
+      "checksum": "3ca3380d2052916a"
     }
   ]
 }
