@@ -51,6 +51,11 @@
       "id": "1-10",
       "url": "levels/level-1-10.json",
       "checksum": "86b93fc3d12f3d46"
+    },
+    {
+      "id": "2-1",
+      "url": "levels/level-2-1.json",
+      "checksum": "dc542e4e25481bf1"
     }
   ]
 }
