@@ -7,6 +7,13 @@
       "subtitle": "100 levels",
       "unlockRequires": "main",
       "manifestURL": "a/manifest.json"
+    },
+    {
+      "id": "b",
+      "title": "Harder Than You Think",
+      "subtitle": "10 new levels",
+      "unlockRequires": "main",
+      "manifestURL": "b/manifest.json"
     }
   ]
 }
