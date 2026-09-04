@@ -3,8 +3,8 @@
   "campaigns": [
     {
       "id": "a",
-      "title": "Campaign A",
-      "subtitle": "10 new levels",
+      "title": "Back to Basics",
+      "subtitle": "100 levels",
       "unlockRequires": "main",
       "manifestURL": "a/manifest.json"
     }
