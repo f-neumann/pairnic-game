@@ -101,6 +101,206 @@
       "id": "2-10",
       "url": "levels/level-2-10.json",
       "checksum": "3ca3380d2052916a"
+    },
+    {
+      "id": "3-1",
+      "url": "levels/level-3-1.json",
+      "checksum": "12e7e3ded9c12051"
+    },
+    {
+      "id": "3-2",
+      "url": "levels/level-3-2.json",
+      "checksum": "f382397928768a9e"
+    },
+    {
+      "id": "3-3",
+      "url": "levels/level-3-3.json",
+      "checksum": "5c7b9ecb6a47aad7"
+    },
+    {
+      "id": "3-4",
+      "url": "levels/level-3-4.json",
+      "checksum": "c42f92168a1aae31"
+    },
+    {
+      "id": "3-5",
+      "url": "levels/level-3-5.json",
+      "checksum": "2352a7103ac4b2e2"
+    },
+    {
+      "id": "3-6",
+      "url": "levels/level-3-6.json",
+      "checksum": "764cb44b37ae2c78"
+    },
+    {
+      "id": "3-7",
+      "url": "levels/level-3-7.json",
+      "checksum": "fa59b64475b72bb3"
+    },
+    {
+      "id": "3-8",
+      "url": "levels/level-3-8.json",
+      "checksum": "486f2e44308c8509"
+    },
+    {
+      "id": "3-9",
+      "url": "levels/level-3-9.json",
+      "checksum": "4ada6a6efc32b6a2"
+    },
+    {
+      "id": "3-10",
+      "url": "levels/level-3-10.json",
+      "checksum": "74e172687d8d1c83"
+    },
+    {
+      "id": "4-1",
+      "url": "levels/level-4-1.json",
+      "checksum": "c11abcf53737836e"
+    },
+    {
+      "id": "4-2",
+      "url": "levels/level-4-2.json",
+      "checksum": "4db84e36a1f695af"
+    },
+    {
+      "id": "4-3",
+      "url": "levels/level-4-3.json",
+      "checksum": "9852f69f8b703d36"
+    },
+    {
+      "id": "4-4",
+      "url": "levels/level-4-4.json",
+      "checksum": "d1caeff28f1520af"
+    },
+    {
+      "id": "4-5",
+      "url": "levels/level-4-5.json",
+      "checksum": "f929bc4f695b919e"
+    },
+    {
+      "id": "4-6",
+      "url": "levels/level-4-6.json",
+      "checksum": "7bb59e6f24be1cb3"
+    },
+    {
+      "id": "4-7",
+      "url": "levels/level-4-7.json",
+      "checksum": "0007f143bade417e"
+    },
+    {
+      "id": "4-8",
+      "url": "levels/level-4-8.json",
+      "checksum": "347f0440585da81f"
+    },
+    {
+      "id": "4-9",
+      "url": "levels/level-4-9.json",
+      "checksum": "ec8dc91fc067de3e"
+    },
+    {
+      "id": "4-10",
+      "url": "levels/level-4-10.json",
+      "checksum": "14b051fe12f94e55"
+    },
+    {
+      "id": "5-1",
+      "url": "levels/level-5-1.json",
+      "checksum": "1730cc6a7cfb5443"
+    },
+    {
+      "id": "5-2",
+      "url": "levels/level-5-2.json",
+      "checksum": "aaeb1d9d9f4bc23e"
+    },
+    {
+      "id": "5-3",
+      "url": "levels/level-5-3.json",
+      "checksum": "2ac564fe86918a9b"
+    },
+    {
+      "id": "5-4",
+      "url": "levels/level-5-4.json",
+      "checksum": "20551bcd37fb366d"
+    },
+    {
+      "id": "5-5",
+      "url": "levels/level-5-5.json",
+      "checksum": "7cae828ab6403497"
+    },
+    {
+      "id": "5-6",
+      "url": "levels/level-5-6.json",
+      "checksum": "dc859bcfabd3be15"
+    },
+    {
+      "id": "5-7",
+      "url": "levels/level-5-7.json",
+      "checksum": "a481d26c1c451d0d"
+    },
+    {
+      "id": "5-8",
+      "url": "levels/level-5-8.json",
+      "checksum": "44f70ec8b3ed2b5f"
+    },
+    {
+      "id": "5-9",
+      "url": "levels/level-5-9.json",
+      "checksum": "8fb7362bd72209d2"
+    },
+    {
+      "id": "5-10",
+      "url": "levels/level-5-10.json",
+      "checksum": "badd4f18d283b380"
+    },
+    {
+      "id": "6-1",
+      "url": "levels/level-6-1.json",
+      "checksum": "91193048827b4e89"
+    },
+    {
+      "id": "6-2",
+      "url": "levels/level-6-2.json",
+      "checksum": "cfefa19042aed78b"
+    },
+    {
+      "id": "6-3",
+      "url": "levels/level-6-3.json",
+      "checksum": "316da70acbf24d44"
+    },
+    {
+      "id": "6-4",
+      "url": "levels/level-6-4.json",
+      "checksum": "879a06eb4d432125"
+    },
+    {
+      "id": "6-5",
+      "url": "levels/level-6-5.json",
+      "checksum": "78b12d018ebb9912"
+    },
+    {
+      "id": "6-6",
+      "url": "levels/level-6-6.json",
+      "checksum": "b31bdbd5c228fd31"
+    },
+    {
+      "id": "6-7",
+      "url": "levels/level-6-7.json",
+      "checksum": "9aae0515cf4c86e8"
+    },
+    {
+      "id": "6-8",
+      "url": "levels/level-6-8.json",
+      "checksum": "76dc4708816c544e"
+    },
+    {
+      "id": "6-9",
+      "url": "levels/level-6-9.json",
+      "checksum": "a5d10788b8f81f73"
+    },
+    {
+      "id": "6-10",
+      "url": "levels/level-6-10.json",
+      "checksum": "19053df0eff75acb"
     }
   ]
 }
