@@ -1,0 +1,19 @@
+{
+  "id": "5-11",
+  "time": 90,
+  "star3Score": 1000,
+  "grid": [
+    "########.",
+    "#ABC.DE##",
+    "#FGF.GCA.",
+    "#H#CDCB##",
+    "#C.##HF..",
+    "##HDFG##.",
+    "#EC#ACE#.",
+    "##GC#.##.",
+    ".######.."
+  ],
+  "platforms": [
+    { "path": [[5, 1], [5, 7]], "start": [5, 7], "ticksPerCell": 4 }
+  ]
+}

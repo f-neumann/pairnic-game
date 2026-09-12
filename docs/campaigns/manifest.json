@@ -11,9 +11,16 @@
     {
       "id": "b",
       "title": "Harder Than You Think",
-      "subtitle": "88 new levels",
+      "subtitle": "100 new levels",
       "unlockRequires": "main",
       "manifestURL": "b/manifest.json"
+    },
+    {
+      "id": "c",
+      "title": "A New Beginning",
+      "subtitle": "186 new levels",
+      "unlockRequires": "main",
+      "manifestURL": "c/manifest.json"
     }
   ]
 }
